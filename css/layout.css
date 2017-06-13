@@ -1,0 +1,17 @@
+.mainPosition {
+  position: relative;
+  top: 65px;
+}
+
+.sectionPosition {
+  position: relative;
+  top: 35px;
+}
+
+.headerText {
+  color: lemonchiffon;
+}
+
+section[name=userGuide] li {
+  font-size: 105%;
+}

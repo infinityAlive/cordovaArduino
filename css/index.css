@@ -1,0 +1,74 @@
+.state {
+  color: #FFFFFF;
+  font-size: 15px;
+  margin: 0px 0px;
+  padding: 1px 2px;
+}
+
+.state.misc {
+  background-color: #e67989;
+  display: block;
+}
+
+.state.returnSuccess {
+  background-color: #337ab7;
+  display: block;
+}
+
+.normalMessage {
+  background-color: #fffaa5;
+  color: #784737;
+  margin: 0px 0px;
+  padding: 1px 5px;
+  display: block;
+}
+
+@keyframes fade {
+  from, to {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@-webkit-keyframes fade {
+  from, to {
+    opacity: 1.0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.blink {
+  animation: fade 3s;
+  animation-iteration-count: infinite;
+  -webkit-animation: fade 3s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  from, to {
+    top: 0px;
+  }
+  50% {
+    top: 1px;
+  }
+}
+
+@-webkit-keyframes bounce {
+  from, to {
+    top: 0px;
+  }
+  50% {
+    top: 2px;
+  }
+}
+
+.bounce {
+  position: relative;
+  animation: bounce 0.7s 10;
+  -webkit-animation: bounce 0.7s 10;
+}
+

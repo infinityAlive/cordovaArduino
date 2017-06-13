@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <!-- Layout CSS -->
+  <link rel="stylesheet" type="text/css" href="css/layout.css">
+
+  <!-- LED switch CSS -->
+  <link rel="stylesheet" type="text/css" href="css/switch.css">
+
+  <!-- rangeSlider CSS -->
+  <link rel="stylesheet" type="text/css" href="css/rangeSlider.css">
+
+  <script defer type="text/javascript" src="js/jquery-1.12.4.js"></script>
+  <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script defer type="text/javascript" src="cordova.js"></script>
+  <script defer type="text/javascript" src="js/message.js"></script>
+  <script defer type="text/javascript" src="js/manageConnect.js"></script>
+  <script defer type="text/javascript" src="js/arduinoHandler.js"></script>
+  <script defer type="text/javascript" src="js/index.js"></script>
+
+  <title>Hello World</title>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="../" class="navbar-brand">阿愣 LED</a>
+      <button id="navigateFunction" class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+              data-target="#navbar-main"
+              aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main" aria-expanded="false"
+         style="height: 1px;">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#userGuide">囊螢映雪</a>
+        </li>
+        <li>
+          <a href="#bluetoothControl">青出於藍</a>
+        </li>
+        <li>
+          <a href="#rainbowLight">雨過天晴</a>
+        </li>
+        <li>
+          <a href="#colorful">五彩繽紛</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="navbar-fixed-bottom">
+  <span></span>
+  <span id="message"></span>
+</div>
+
+
+<section name="userGuide" class="container mainPosition">
+  <h4 class="headerText">囊螢映雪</h4>
+  <p class="lead">
+    DanboardLED app 可以藉由手機的藍牙功能，連線至阿愣的控制板，
+    再透過 app 的相關操作發送藍牙訊號來遙控阿愣 LED 喔！！！
+    那來看看主要功能有哪些吧～～
+  <li>【青出於藍】掃描藍牙裝置與藍牙連線，選擇 Danboard19880618 的藍牙，就成功連結至
+    阿愣控制板囉！
+  </li>
+  <li>【雨過天青】LED 接上電池後，預設亮燈就會是彩虹的順序，在這裡可以控制彩虹的開關，
+    全部為 OFF，就是關閉。By the way 玩完後要記得關燈喔，要不然 LED 就燒壞了...
+  </li>
+  <li>【五彩繽紛】這裡可以 DIY 想要 LED 發亮的顏色，有調色盤喔！
+    最多可以選擇七組不同的 LED 顏色，
+    以及各顏色亮燈的間隔秒數
+    (LED 亮燈的顏色的並不會很明顯，所以可能會和 APP 上呈現的顏色有差別...)
+  </li>
+  總之，玩玩看吧～～
+  </p>
+</section>
+
+<section class="container sectionPosition">
+  <a name="bluetoothControl"></a>
+  <hr class="featurette-divider">
+  <h4 class="headerText">青出於藍</h4>
+  <button id="scanBlueTooth" class="btn btn-primary btn-sm">掃描藍牙裝置</button>
+  <table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+      <th><h5>藍牙名稱</h5></th>
+    </tr>
+    </thead>
+    <tbody id="bluetoothList">
+    </tbody>
+  </table>
+</section>
+
+<section class="container sectionPosition">
+  <a name="rainbowLight"></a>
+  <hr class="featurette-divider">
+  <h4 class="headerText">雨過天晴</h4>
+  <p>
+    控制彩虹的開關
+  </p>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font red">RED</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="red" class="switchLED red" type="checkbox" value="R">
+      <label for="red"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font orange">ORANGE</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="orange" class="switchLED orange" type="checkbox" value="O">
+      <label for="orange"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font yellow">YELLOW</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="yellow" class="switchLED yellow" type="checkbox" value="Y">
+      <label for="yellow"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font green">GREEN</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="green" class="switchLED green" type="checkbox" value="G">
+      <label for="green"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font blue">BLUE</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="blue" class="switchLED blue" type="checkbox" value="B">
+      <label for="blue"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font indigo">INDIGO</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="indigo" class="switchLED indigo" type="checkbox" value="I">
+      <label for="indigo"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <h4 class="ledSwitch-font purple">PURPLE</h4>
+    </div>
+    <div class="col-xs-8">
+      <input id="purple" class="switchLED purple" type="checkbox" value="P">
+      <label for="purple"></label>
+    </div>
+  </div>
+  <div>
+    <br/>
+    <button id="rainbowLED" class="btn btn-success btn-sm">繪製彩虹燈</button>
+  </div>
+</section>
+
+<section id="colorfulLED" class="container sectionPosition">
+  <a name="colorful"></a>
+  <hr class="featurette-divider">
+  <h4 class="headerText">五彩繽紛</h4>
+  <p>
+    DIY LED 顏色，於下方可選擇製作 LED 燈的數量與亮燈間隔的秒數，
+    至多可製作七組 LED 喔！(一種七彩霓虹燈的概念 XD)
+    接著會出現 紅綠藍 色光三原色之調色盤，調整 RGB 參數後，
+    按下送出，LED 就會依據數量與參數發出該顏色的亮光喔！
+    Try it !!!
+  </p>
+  <select id="selectLEDcount" class="form-control">
+    <option disabled selected>選擇 LED 燈數量</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select>
+  <p>選擇完 LED 燈數量後，下方會出現調色盤喔！</p>
+  <div id="ledRangeForRGB_0" name="ledRangeForRGB" style="display: none">
+    <label class="label label-default"
+           style="font-weight: normal; font-size: 14px">
+      調色盤 LED 第 <span></span> 組
+    </label>
+    <p class="lead"/>
+    <p class="lead">
+      <input name="RED" class="mozRange mozRed rangeRed" type="range" value="128" min="0" max="255">
+    </p>
+    <p class="lead">
+      <input name="GREEN" class="mozRange mozGreen rangeGreen" type="range" value="128" min="0" max="255">
+    </p>
+    <p class="lead">
+      <input name="BLUE" class="mozRange mozBlue rangeBlue" type="range" value="128" min="0" max="255">
+    </p>
+    <div class="row">
+      <div class="col-xs-1">
+        R:
+      </div>
+      <div class="col-xs-3">
+        <input name="rgbValue" type="text" class="form-control input-sm" placeholder="RED">
+      </div>
+      <div class="col-xs-1">
+        G:
+      </div>
+      <div class="col-xs-3">
+        <input name="rgbValue" type="text" class="form-control input-sm" placeholder="GREEN">
+      </div>
+      <div class="col-xs-1">
+        B:
+      </div>
+      <div class="col-xs-3">
+        <input name="rgbValue" type="text" class="form-control input-sm" placeholder="BLUE">
+      </div>
+    </div>
+    <br/>
+    <!-- 調色盤 RGB 顏色融合 -->
+    <div class="row">
+      <div class="col-xs-12">
+        <input type="text" name="blend" class="form-control input-sm"
+               style="background-color: #FFF; color: transparent;" disabled
+               placeholder="這裡會呈現調色盤數值融合後的顏色喔！">
+      </div>
+    </div>
+    <p class="lead"/>
+    <p class="lead"/>
+  </div>
+  <div id="paletteLED" style="text-align: center; display: none;">
+    <!-- LED 間隔時間 -->
+    <p class="lead">
+      <input id="timer" class="mozRange mozGray rangeGray" type="range" value="10" min="3" max="30">
+    </p>
+    LED 間隔時間 <span id="timeInterval"></span> 秒
+    <button id="paletteLEDsubmit" class="btn btn-success btn-xs">傳送 RGB 值</button>
+    <button id="paletteLEDoff" class="btn btn-primary btn-xs">關燈</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="container sectionPosition">
+  <hr class="featurette-divider">
+  <p>&copy; Love-Intelligence in 2017 Birthday</p>
+</footer>
+</body>
+</html>
